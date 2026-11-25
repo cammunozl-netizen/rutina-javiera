@@ -498,7 +498,7 @@ const NUM = DAY_NAME;
 const VIDEOS = {};
 /* Indicaciones de técnica por ejercicio (aplican también a sus variantes) */
 const TIPS = {
-  l1:'En cuatro apoyos, manos bajo los hombros y rodillas bajo la cadera, con la mancuerna sujeta detrás de la rodilla. Empuja el talón hacia el techo apretando el glúteo, sin arquear la espalda baja. Baja lento y repite; luego cambia de pierna.',
+  l1:'En cuatro apoyos, manos bajo los hombros y rodillas bajo la cadera, con la mancuerna en la mano contraria a la pierna que trabaja. Sube a la vez esa pierna (talón hacia el techo, sin peso) y el brazo cruzado con la mancuerna al frente, hasta la línea del cuerpo. Aprieta glúteo y abdomen sin arquear la espalda baja; baja lento y luego cambia de lado.',
   l2:'Sentada con rodillas flexionadas y torso inclinado hacia atrás, espalda recta. Sostén la pesa rusa frente al pecho y gira el tronco de un lado a otro llevándola junto a la cadera. El giro sale del abdomen, no solo de los brazos. Si cuesta, apoya los talones.',
   l3:'Acostada boca arriba, rodillas flexionadas y pies apoyados. Manos junto a las sienes, sin tirar del cuello. Despega los hombros del suelo exhalando y apretando el abdomen; baja controlado sin apoyar del todo la cabeza.',
   l4:'Sentada o acostada, apoyada en antebrazos y espalda baja pegada al suelo. Lleva las rodillas al pecho exhalando y extiende las piernas sin que toquen el suelo. Si sientes la zona lumbar, sube un poco más las piernas.',
@@ -532,10 +532,9 @@ function videoFor(name){
 /* p: prioridad (1 principal, 2 secundario, 3 accesorio/core) · zone: pierna|superior|core
    La variante 0 es la que Javiera hace hoy con su set de casa. */
 const EXS = [
-  {id:'l1', day:'L', p:1, zone:'pierna', muscle:'Glúteo', sets:3, reps:[12,15], unit:'reps', side:'c/pierna', rest:60, v:[
+  {id:'l1', day:'L', p:1, zone:'pierna', muscle:'Glúteo · Hombro', sets:3, reps:[12,15], unit:'reps', side:'c/lado', rest:60, v:[
     {n:'Patada de glúteo con mancuerna', r:['mancuernas'], base:true},
-    {n:'Patada de glúteo con banda', r:['bandas']},
-    {n:'Patada de glúteo sin peso', r:[]}]},
+    {n:'Patada de glúteo sin peso en el brazo', r:[]}]},
   {id:'l2', day:'L', p:2, zone:'core', core:true, muscle:'Oblicuos', sets:3, reps:[12,15], unit:'reps', side:'', rest:30, v:[
     {n:'Abs laterales con pesa rusa', r:['kettlebell'], base:true},
     {n:'Abs laterales con mancuerna', r:['mancuernas']},
@@ -2261,22 +2260,22 @@ const CAPSULES = {
   /* ====== Cápsulas de la rutina de Javiera ====== */
   /* ---------- Lunes ---------- */
   l1: {
-    eyebrow:'Técnica · Glúteo', props:[{t:'mat', z:[-.9,.9]}, {t:'dbAt', at:'kneeR'}],
+    eyebrow:'Técnica · Glúteo y hombro', props:[{t:'mat', z:[-.9,.9]}, {t:'db', side:'L'}],
     poses:{
       base:{pitch:90, anchor:{j:'kneeL', p:[0,.06,-.2]}, legs:{h:90, k:90, abd:4}, trunk:-4, head:-8, arms:{m:'a', sf:94, sa:4, e:0}},
-      kick:{pitch:90, anchor:{j:'kneeL', p:[0,.06,-.2]}, legL:{h:90, k:90, abd:4}, legR:{h:-6, k:88, abd:4}, trunk:-4, head:-8, arms:{m:'a', sf:94, sa:4, e:0}},
-      arch:{pitch:90, anchor:{j:'kneeL', p:[0,.06,-.2]}, legL:{h:90, k:90, abd:4}, legR:{h:-38, k:84, abd:4}, trunk:-4, curve:-22, head:22, arms:{m:'a', sf:94, sa:4, e:0}, bad:1}
+      kick:{pitch:90, anchor:{j:'kneeL', p:[0,.06,-.2]}, legL:{h:90, k:90, abd:4}, legR:{h:-6, k:88, abd:4}, trunk:-4, head:-8, armR:{m:'a', sf:94, sa:4, e:0}, armL:{m:'a', sf:176, sa:10, e:4}},
+      arch:{pitch:90, anchor:{j:'kneeL', p:[0,.06,-.2]}, legL:{h:90, k:90, abd:4}, legR:{h:-38, k:84, abd:4}, trunk:-4, curve:-22, head:22, armR:{m:'a', sf:94, sa:4, e:0}, armL:{m:'a', sf:196, sa:26, e:4}, bad:1}
     },
-    thumb:{pose:'kick', yaw:-80},
+    thumb:{pose:'kick', yaw:-70},
     scenes:[
-      {dur:3.4, yaw:-60, orbit:30, title:'Patada *de glúteo*', sub:'Glúteo mayor · en cuatro apoyos', keys:[[0,'base']]},
-      {dur:4.2, yaw:-90, title:'Manos bajo hombros, *rodillas bajo cadera*', sub:'Mancuerna sujeta detrás de la rodilla', badge:'ok', keys:[[0,'base']],
-        ann:[{t:'vert', at:'shN', len:60}, {t:'vert', at:'hipN', len:60}, {t:'ring', at:'kneeR', r:18, lab:'Mancuerna en el pliegue', dy:34}], annWin:[.15,1]},
-      {dur:5, yaw:-90, title:'Talón *hacia el techo*', sub:'Aprieta el glúteo arriba', badge:'ok', keys:[[0,'base'],[.42,'kick'],[.78,'kick'],[1,'base']],
-        ann:[{t:'arrow', a:{j:'heelR', o:[0,-.2,0]}, b:'heelR', c:'ok', lab:'Talón al techo', dy:-26}, {t:'glow', at:'hipR', r:34}], annWin:[.42,.82]},
-      {dur:4.6, yaw:-90, title:'Error: *arquear la espalda*', sub:'Sube solo hasta donde la espalda no se curve', badge:'bad', keys:[[0,'base'],[.42,'arch'],[.8,'arch'],[1,'base']], ref:{arch:'kick'},
+      {dur:3.4, yaw:-60, orbit:30, title:'Patada *de glúteo*', sub:'Glúteo y hombro · brazo y pierna cruzados', keys:[[0,'base']]},
+      {dur:4.4, yaw:-60, title:'Manos bajo hombros, *rodillas bajo cadera*', sub:'Mancuerna en la mano contraria a la pierna que patea', badge:'ok', keys:[[0,'base']],
+        ann:[{t:'vert', at:'shN', len:60}, {t:'vert', at:'hipN', len:60}, {t:'ring', at:'wristL', r:18, lab:'Mancuerna en la mano', dy:34}], annWin:[.15,1]},
+      {dur:5.2, yaw:-70, title:'Pierna y brazo *cruzados* suben', sub:'Talón al techo y mancuerna al frente', badge:'ok', keys:[[0,'base'],[.42,'kick'],[.78,'kick'],[1,'base']],
+        ann:[{t:'arrow', a:{j:'heelR', o:[0,-.2,0]}, b:'heelR', c:'ok', lab:'Talón al techo', dy:-26}, {t:'arrow', a:{j:'wristL', o:[0,-.18,-.2]}, b:'wristL', c:'ok', lab:'Brazo al frente', dy:-26}], annWin:[.42,.82]},
+      {dur:4.6, yaw:-90, title:'Error: *arquear la espalda*', sub:'Brazo y pierna solo hasta la línea del cuerpo', badge:'bad', keys:[[0,'base'],[.42,'arch'],[.8,'arch'],[1,'base']], ref:{arch:'kick'},
         ann:[{t:'ring', at:'spine', c:'bad', r:26, lab:'Espalda baja arqueada', dy:-40}], annWin:[.42,.84]},
-      {dur:5.4, yaw:-55, orbit:20, title:'Baja *lento* y repite', sub:'Termina las reps y cambia de pierna', badge:'ok', keys:[[0,'base'],[.28,'kick'],[.5,'base'],[.78,'kick'],[1,'base']],
+      {dur:5.6, yaw:-55, orbit:20, title:'Baja *lento* y repite', sub:'Cadera y hombros quietos · luego cambia de lado', badge:'ok', keys:[[0,'base'],[.28,'kick'],[.5,'base'],[.78,'kick'],[1,'base']],
         ann:[{t:'line', a:'pelvis', b:'neck', c:'ok', lab:'Espalda quieta', lat:'b', dy:-28}], annWin:[.05,1]}
     ]
   },
@@ -2523,7 +2522,7 @@ const CAPSULES = {
 };
 /* Qué cápsula se muestra según la variante elegida (índice de variante en EXS). Sin entrada = todas las variantes. */
 const CAP_MAP = {
-  l1:{0:'l1', 1:'l1', 2:'l1'},
+  l1:{0:'l1', 1:'l1'},
   l2:{0:'l2', 1:'l2', 2:'l2'},
   l3:{0:'l3'},
   l4:{0:'l4'},
